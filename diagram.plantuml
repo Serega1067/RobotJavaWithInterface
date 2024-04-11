@@ -1,0 +1,50 @@
+@startuml
+interface RobotListener {
+    +static final String NAME
+    +void startMove(x: double, y: double)
+    +void endMove(x: double, y: double)
+}
+
+class Robot  {
+    -double x
+    -double y
+    #double course
+    -ArrayList<RobotLine> lines
+    -RobotListener listener
+    -Robot(x: double, y: double)
+    +void setListener(listener: RobotListener)
+    +void forward(distance: int)
+    +double getX()
+    +double getY()
+    +double getCourse()
+    +void setCourse(course: double)
+    +ArrayList<RobotLine> getLines()
+}
+
+class EimpleRobotListener {
+    +void startMove(x: double, y: double)
+    +void endMove(x: double, y: double)
+}
+
+class RobotManager {
+    +static void main(agrs: String[])
+}
+
+class RobotFrame {
+    +RobotFrame(robot: Robot)
+}
+
+RobotFrame --|> JFrame
+
+class JFrame {}
+
+class RobotPathComponent {
+    -Robot robot
+    +RobotPathComponent(robot: Robot)
+    #void paintComponent(g: Graphics)
+}
+
+RobotPathComponent --|> JComponent
+
+class JComponent {}
+@enduml
